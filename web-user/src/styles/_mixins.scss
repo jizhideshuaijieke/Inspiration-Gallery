@@ -1,0 +1,146 @@
+@use 'tokens' as *;
+
+@mixin panel-surface(
+  $radius: $radius-xl,
+  $border: $color-border-soft,
+  $background: $color-surface,
+  $shadow: $shadow-soft
+) {
+  border: 1px solid $border;
+  border-radius: $radius;
+  background: $background;
+  box-shadow: $shadow;
+}
+
+@mixin input-shell($height: 48px, $radius: $radius-md, $padding-x: 14px) {
+  width: 100%;
+  height: $height;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-surface-soft;
+  padding: 0 $padding-x;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color $transition-fast,
+    background $transition-fast,
+    box-shadow $transition-fast;
+
+  &:focus {
+    border-color: $color-primary-soft;
+    background: $color-surface;
+    box-shadow: 0 0 0 3px rgba(147, 188, 154, 0.12);
+  }
+}
+
+@mixin solid-button($height: 50px, $radius: $radius-lg, $font-size: 15px) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: $height;
+  border: 0;
+  border-radius: $radius;
+  background: linear-gradient(135deg, $color-primary, $color-primary-strong);
+  color: #fff;
+  font-size: $font-size;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform $transition-fast, opacity $transition-fast;
+
+  &:hover:not([disabled]) {
+    transform: translateY(-1px);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.72;
+  }
+}
+
+@mixin ghost-button($height: 40px, $radius: $radius-md, $font-size: 12px) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: $height;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius;
+  background: $color-surface;
+  color: #243027;
+  font-size: $font-size;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color $transition-fast,
+    background $transition-fast,
+    opacity $transition-fast;
+
+  &:hover:not([disabled]) {
+    border-color: $color-primary-soft;
+    background: #fdfefd;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+}
+
+@mixin danger-button($height: 40px, $radius: $radius-md, $font-size: 13px) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: $height;
+  border: 0;
+  border-radius: $radius;
+  background: #b7425f;
+  color: #fff;
+  font-size: $font-size;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform $transition-fast, opacity $transition-fast;
+
+  &:hover:not([disabled]) {
+    transform: translateY(-1px);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+}
+
+@mixin app-shell {
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  overflow: hidden;
+  background: radial-gradient(circle at 15% 20%, #f0f2ed 0%, #f8f8f6 40%, $color-page-bg 100%);
+  color: $color-text;
+}
+
+@mixin app-main-panel($desktop-padding: 20px 24px 30px, $mobile-padding: 14px) {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  padding: $desktop-padding;
+  display: flex;
+  overflow: hidden;
+
+  > * {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  @media (max-width: 900px) {
+    height: auto;
+    padding: $mobile-padding;
+    display: block;
+    overflow: visible;
+
+    > * {
+      overflow: visible;
+    }
+  }
+}
