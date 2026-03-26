@@ -10,6 +10,9 @@ dist/
 __pycache__/
 **/__pycache__/
 
+docs/
+_publish_tmp_20260317/
+
 server/.env
 server/.runtime/
 server/media/
@@ -21,3 +24,5 @@ transfer-models/results/
 
 web-user/.env
 web-admin/.env
+web-user/.git.nested-backup/
+web-admin/.git.nested-backup/
